@@ -79,7 +79,7 @@
         }
 
         // on affiche l'erreur renvoyée par l'API
-        if (status != "") { document.getElementById("bandeau").innerHTML = 'Erreur ! Le serveur a répondu : ' + statut }
+        if (status != "") { document.getElementById("bandeau").innerHTML = 'Erreur ! Le serveur a répondu : ' + status }
 
         // on quitte si l'identifiant n'a pu être récupéré
         if (ref == "") { return } else { console.log("L'identifiant du film est : " + ref) }
@@ -127,9 +127,9 @@
             if (choix == 0) {
                 
                 // on récupère une éventuelle erreur
-                statut = response.errorMessage;
-                console.log(statut);
-                if (statut != "") { return }
+                status = response.errorMessage;
+                console.log(status);
+                if (status != "") { return }
 
                 // on récupère l'identifiant du film
                 ref = "";
