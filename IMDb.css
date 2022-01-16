@@ -11,7 +11,6 @@ html {
 }
 
 body {
-
   margin: 50px;
   /*display: flex;
   flex-direction: row;*/
@@ -19,15 +18,17 @@ body {
 
 .menu {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   padding: 1%;
-  margin-left: 11%;
-  width: 70%;
+
+  width: 35.7rem;
+  height: 5rem;
   background-color: rgb(43, 46, 44);
   border-radius: 0.6rem;
-  border: solid black 2px;
-  margin-top: 4%;
+  border: solid rgb(98, 247, 142) 1px;
+  margin: 1rem 0;
 }
 
 .menu>.recherche {
@@ -39,36 +40,58 @@ body {
 
 .menu>.recherche>input {
   background-color: white;
-  width: 12rem;
+  width: 15rem;
   padding-left: 5px;
   height: 2.5rem;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
 }
 
 .menu>.recherche>.btSearch {
-  background-color: rgb(98, 247, 142);
   width: 8rem;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  font-weight: 600;
+  font-weight: 800;
   margin-top: auto;
+  border: solid rgb(98, 247, 142) 2px;
+  border-radius: 0.3rem;
+}
 
+.menu>.recherche>.btSearch:hover {
+  background-color: rgb(12, 163, 35);
+  color: white;
+}
+
+#displayfilm {
+  width: 100%;
+  height: 2rem;
+  font-size: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-weight: 600;
+  /*margin-top: 3rem;*/
+  color: hotpink;
+  background-color: rgb(43, 46, 44);
+  border-radius: 0.6rem;
+  border: solid rgb(98, 247, 142) 1px;
+  padding: 1rem 0;
 }
 
 button {
-  /* margin: 10px; */
-  width: 6rem;
-  height: 2.5rem;
-  font-family: Arial, Helvetica, sans-serif;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  font-family: Garamond, serif;
   text-align: center;
   font-weight: 600;
   background: rgb(98, 247, 142);
   border-radius: 0.5rem;
   padding: 10px;
-  border: solid black 1px;
-
+  border: solid rgb(98, 247, 142) 3px;
 }
 
+button:hover {
+  background-color: rgb(12, 163, 35);
+  color: white;
+}
 
 /* .btSearch .container {
   margin-left: 11%;
@@ -76,8 +99,10 @@ button {
 } */
 
 .container {
-  margin-left: 11%;
   margin-top: 2rem;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
 }
 
 .container>#affiche>ul>li {
@@ -86,22 +111,24 @@ button {
 }
 
 .container>#affiche {
-  padding-left: 20px;
+  padding: 20px;
   background-color: rgb(43, 46, 44);
   border-radius: 0.6rem;
-  border: solid black 2px;
-  max-width: 50%;
+  border: solid rgb(98, 247, 142) 1px;
+  min-height: 21.4rem;
+  width: 43%;
+  font-size: 1.1rem;
 }
 
 #synopsis {
   background-color: rgb(43, 46, 44);
   border-radius: 0.6rem;
-  border: solid black 2px;
-  padding-left: 20px;
-  margin-top: 20px;
+  border: solid rgb(98, 247, 142) 1px;
+  padding: 20px;
   color: white;
-  min-height: 4rem;
-  max-width: 50%;
+  min-height: 21.4rem;
+  width: 43%;
+  font-size: 1.1rem;
 }
 
 #synopsis>u {
@@ -114,23 +141,40 @@ button {
   min-height: 3rem;
 }
 
+#vignette {
+  margin: 0 auto;
+  height: 200px;
+  width: 400px;
+  visibility: visible;
+  background-color: rgb(16, 156, 63);
+  border-radius: 0.6rem;
+  border: solid rgb(98, 247, 142) 1px;
+  padding-left: 20px;
+  margin-top: 20px;
+  color: white;
+  /* min-height: 4rem; */
+  /* max-width: 50%; */
+}
+
 #bandeau {
-  margin-left: 11%;
   margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 #bandeau>img {
   width: 300px;
-  height:400px;
+  height: 400px;
 }
 
 .slideshow {
-
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  margin-right: auto; 
   width: 583px;
-  height: 400px;
+  height: 300px;
   overflow: hidden;
+  border: solid rgb(98, 247, 142) 1px;
+
   /* border: 3px solid #F2F2F2; */
 }
 
@@ -150,25 +194,40 @@ button {
 
 img {
   width: 583px;
-  height: 400px;
+  height: 300px;
 }
-
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-
-
-/* 
-.btn {
-  margin: 10px;
-
-} */
 
 .flex {
   display: flex;
   flex-direction: column;
+
+}
+
+.flex2 {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.partieDroite {
+  width: 100%;
+  margin-left: 40px;
+}
+
+.show {
+  visibility: hidden;
+}
+
+
+.desy {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.desy>button {
+  width: 11rem;
+  height: 3.5rem;
+  font-size: 1.5rem;
 
 }

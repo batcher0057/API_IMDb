@@ -7,37 +7,48 @@
     <link rel="stylesheet" href="IMDb.css" />
 </head>
 
-</head>
-
 <body>
-    <div class="flex">
-        <div class="slideshow">
-            <ul>
-                <li><img src="film1.JPG" /></li>
-                <li><img src="film2.JPG" /></li>
-                <li><img src="film3.JPG" /></li>
-            </ul>
+
+    <div class="flex2">
+        <div class="flex">
+            <div class="slideshow">
+                <ul>
+                    <li><img src="film1.JPG" /></li>
+                    <li><img src="film2.JPG" /></li>
+                    <li><img src="film3.JPG" /></li>
+                </ul>
+            </div>
+            <div>
+                <div class="menu">
+                <div class="recherche">
+                        <input type="search" id="motCle" placeholder="Tapez un nom de film">
+                        <button class="btSearch"
+                            onclick="rechercheFilm(0);afficherFilm()">Recherche</button>
+                    </div>
+            </div>
+            <!-- <div id="displayfilm">Film selectionné:
+            </div>  -->
+            <div class="desy">
+                <button onclick="rechercheFilm(1)"> Description</button>
+                <button onClick="rechercheFilm(2)">Synopsis</button>
+                <button onClick="rechercheFilm(3)">Similaires</button>
+            </div>
+            </div> 
         </div>
 
-        <div class="menu">
-            <div class="recherche">
-                <input type="search" id="motCle">
-                <button class="btSearch"
-                    onclick="rechercheFilm(document.getElementById('motCle').value, 0)">Recherche</button>
+        <div class="partieDroite">
+            <div id="displayfilm">Film sélectionné:</div> 
+
+            <div class="container">
+                <!-- <div id="vignette"></div> -->
+                <div id="affiche"></div>
+                <div id="synopsis"></div>
             </div>
-            <button onclick="rechercheFilm(ref, 1)">Description</button>
-            <button onClick="rechercheFilm(ref, 2)">Synopsis</button>
-            <button onClick="rechercheFilm(ref, 3)">Pas Click !</button>
-        </div>
-        <div class="container">
-            <div id="vignette"></div>
-            <div id="affiche"></div>
-            <div id="synopsis"></div>
-        </div>
-        <div id="bandeau">
-            <div id="similaires"></div>
-        </div>
+        </div>              
+        
     </div>
+    <div id="bandeau"></div>
+
 
 </body>
 
@@ -48,7 +59,6 @@
 
 <script>
 
-    // on crée le carrousel
     $(function () {
         setInterval(function () {
             $(".slideshow ul").animate({ marginLeft: -583 }, 1500, function () {
@@ -56,6 +66,7 @@
             })
         }, 3500);
     });
+
 
     // on définit les variables
     let existeFiche = false;
@@ -66,11 +77,14 @@
     let status = "";
 
     //let apiKey = "k_hgwzc1fp";
-    //let apiKey = "k_mc792s9t";
-    let apiKey = "k_0fv2a40g";
+    let apiKey = "k_mc792s9t";
+    //let apiKey = "k_0fv2a40g";
 
     // on recherche un film à partir d'un mot-clé
-    function rechercheFilm(keyword, choix) {
+    function rechercheFilm(choix) {
+
+        let keyword = document.getElementById("motCle").value;
+        if (keyword == "") { return }
 
         // on récupère l'identifiant du film
         if (choix == 0 || ref == "") {
@@ -78,11 +92,15 @@
             appelAPI(requete, 0);
         }
 
-        // on affiche l'erreur renvoyée par l'API
-        if (status != "") { document.getElementById("bandeau").innerHTML = 'Erreur ! Le serveur a répondu : ' + status }
+        // on affiche l'erreur renvoyée par l'API puis on quitte
+        if (status != "") {
+            window.alert("Erreur ! Le serveur a répondu : " + status);
+            return;
+        }
 
         // on quitte si l'identifiant n'a pu être récupéré
-        if (ref == "") { return } else { console.log("L'identifiant du film est : " + ref) }
+        if (ref == "") { return }
+        //console.log("L'identifiant du film est : " + ref);
 
         // on récupère les infos du film
         if (choix > 0) {
@@ -125,16 +143,17 @@
             }
 
             if (choix == 0) {
-                
+
                 // on récupère une éventuelle erreur
                 status = response.errorMessage;
-                console.log(status);
+                if (status == "") { console.log("aucune erreur") } else { console.log("Status de l'erreur : " + status) }
+
                 if (status != "") { return }
 
                 // on récupère l'identifiant du film
                 ref = "";
                 for (const element of response.results) {
-                    if (ref == "") { 
+                    if (ref == "") {
                         ref = element.id;
                     }
                 }
@@ -150,7 +169,7 @@
         let x = 0;
         let picture = [];
         for (const element of reponse.similars) {
-            if (x < 3) {
+            if (x < 4) {
                 picture[x] = element.image;
             }
             x++;
@@ -179,6 +198,10 @@
         let balise6 = document.createElement("img");
         balise6.src = picture[2];
         bloc3.appendChild(balise6);
+
+        let balise7 = document.createElement("img");
+        balise7.src = picture[3];
+        bloc3.appendChild(balise7);
 
         existeBandeau = true;
         return;
@@ -257,5 +280,15 @@
         existeFiche = true;
         return;
     }
+
+
+    function afficherFilm() {
+
+
+
+        document.getElementById("displayfilm").innerHTML = "Film sélectionné: " + document.getElementById("motCle").value
+
+    }
+
 
 </script>
